@@ -2,7 +2,7 @@
 
 Crimson Doctor is a local Windows companion tool for Crimson Desert JSON mod patching, diagnostics, launch/crash logging, audit reports, and recovery planning.
 
-Current public release: **v1.0.2 RC**.
+Current public release: **v1.0.2**.
 
 Crimson Doctor is the major successor to CD JSON Mod Auto Patcher. It is not another mod manager. It is the safety, diagnosis, explanation, and report layer that works beside your chosen mod manager, manual setup, or vanilla install.
 
