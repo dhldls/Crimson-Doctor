@@ -8,8 +8,6 @@ v1.0.4 is a stability and compatibility hardening release on top of the v1.0.3 S
 - If an operation fails after Doctor is already open, Doctor now tries to contain the failure, explain it in Doctor Read, and write local tool-side evidence instead of letting the app crash.
 - Added tone-aware wording variation for contained operation failures and a larger Hurry up acknowledgement pool.
 - Hardened background-operation result display so a finished operation cannot leave Doctor stuck in a busy state if the final UI/render step fails.
-- Kept the v1.0.3-compatible PyInstaller folder packaging lane and Python 3.12 target.
-- Refreshed public version metadata and docs to v1.0.4 Stable.
 
 ## What Did Not Change
 
