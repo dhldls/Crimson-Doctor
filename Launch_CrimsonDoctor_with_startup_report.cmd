@@ -1,44 +1,17 @@
 @echo off
-setlocal EnableExtensions
-set "ROOT=%~dp0"
-set "APPDIR=%ROOT%CrimsonDoctor-1.0.3"
-set "EXE=%APPDIR%\CrimsonDoctor.exe"
-set "REPORT=%ROOT%CrimsonDoctor-startup-report.txt"
-(
-  echo Crimson Doctor 1.0.3 startup diagnostic helper
-  echo Generated: %DATE% %TIME%
-  echo.
-  echo EXE: %EXE%
-  echo APPDIR: %APPDIR%
-  echo USERDOMAIN: %USERDOMAIN%
-  echo OS: %OS%
-  echo PROCESSOR_ARCHITECTURE: %PROCESSOR_ARCHITECTURE%
-  echo.
-) > "%REPORT%"
-if not exist "%EXE%" (
-  echo Missing executable: %EXE% >> "%REPORT%"
-  type "%REPORT%"
-  pause
-  exit /b 2
-)
-start /wait "" "%EXE%"
-set "EXITCODE=%ERRORLEVEL%"
-(
-  echo.
-  echo Exit code: %EXITCODE%
-  echo.
-  echo AppData startup diagnostic tail:
-) >> "%REPORT%"
-set "APPDATA_LOG=%LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log"
-if exist "%APPDATA_LOG%" (
-  powershell -NoProfile -Command "Get-Content -LiteralPath '%APPDATA_LOG%' -Tail 80" >> "%REPORT%" 2>&1
-) else (
-  echo No %%LOCALAPPDATA%%\CrimsonDoctor\startup_diagnostic.log found. >> "%REPORT%"
-)
+setlocal
+cd /d "%~dp0"
+echo Crimson Doctor startup helper > CrimsonDoctor-startup-report.txt
+echo Started: %DATE% %TIME% >> CrimsonDoctor-startup-report.txt
+echo Folder: %CD% >> CrimsonDoctor-startup-report.txt
+echo. >> CrimsonDoctor-startup-report.txt
+CrimsonDoctor.exe
+set EXITCODE=%ERRORLEVEL%
+echo. >> CrimsonDoctor-startup-report.txt
+echo Exit code: %EXITCODE% >> CrimsonDoctor-startup-report.txt
+echo Finished: %DATE% %TIME% >> CrimsonDoctor-startup-report.txt
 echo.
-echo Startup report written to:
-echo %REPORT%
-echo.
-type "%REPORT%"
+echo Crimson Doctor exited with code %EXITCODE%.
+echo Report written to CrimsonDoctor-startup-report.txt
 pause
 exit /b %EXITCODE%
