@@ -2,11 +2,11 @@
 
 Crimson Doctor is the major successor to CD JSON Mod Auto Patcher.
 
-Current public release: v1.0.3 Stable.
+Current public release: v1.0.4 Stable.
 
 Crimson Doctor is a local Windows utility for Crimson Desert JSON mod patching, compatibility checks, diagnostics, audit reports, and recovery planning. It is strongest around modded setups, but several workflows also help vanilla players diagnose launch, save, cloud, baseline, and support-report issues.
 
-The v1.0.3 Stable package is backed by 40,000+ lines of local app, GUI, CLI, patcher-engine, diagnostic, audit, and recovery code. The Windows compatibility package uses the PyInstaller folder build that proved most reliable in public startup testing, with bundled runtime files, bundled public docs, and no required Python install for normal users.
+The v1.0.4 Stable package is backed by 40,000+ lines of local app, GUI, CLI, patcher-engine, diagnostic, audit, and recovery code. The Windows compatibility package uses the PyInstaller folder build that proved most reliable in public startup testing, with bundled runtime files, bundled public docs, and no required Python install for normal users.
 
 ## Author Note
 
@@ -14,7 +14,7 @@ Crimson Doctor started as a tool I wanted for my own setup, then turned into a m
 
 The GUI was not copied from an online template. The layout, tab structure, header, pulse monitor, Doctor Read panel, and workflow grouping were hand-curated through a lot of resize checks, visual cleanup, and "this still feels too cramped" passes. I am a bit obsessive about spacing and symmetry, so the interface went through more redesigns than I originally expected.
 
-Doctor Read is probably the part I am secretly most proud of. It is deterministic local logic: evidence gets normalized, rule-style conclusions are selected, and the wording is varied through curated phrase libraries so reports feel less like a wall of raw crash text. Same evidence, same boundaries, just a more readable path through the mess. In v1.0.3, that wording layer includes 3 Your IQ readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, and 72 external manager conflict/load-order guidance lines.
+Doctor Read is probably the part I am secretly most proud of. It is deterministic local logic: evidence gets normalized, rule-style conclusions are selected, and the wording is varied through curated phrase libraries so reports feel less like a wall of raw crash text. Same evidence, same boundaries, just a more readable path through the mess. In v1.0.4, that wording layer includes 3 Your IQ readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 144 safe-operation failure phrase parts, 96 Hurry up acknowledgement lines, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, and 72 external manager conflict/load-order guidance lines.
 
 The testing path was also not glamorous. I ran it through custom sandbox folders, fake saves, fake manager outputs, patched JSON samples, bad configs, missing paths, crash-style reports, backup/restore transactions, and a lot of repeated smoke tests. I lost sleep, lost a little weight, and somehow found out that building the tool was starting to feel as fun as playing the game. I am not sure it catches every edge case yet, but the design goal is simple: be useful, be honest about unsupported formats, and give users and mod authors evidence they can actually act on.
 
@@ -54,6 +54,8 @@ The pulse monitor in the header is a functional activity/status indicator, not j
 If the previous Crimson Doctor tool crash or startup failure produced a self-diagnostic record, Doctor shows that notice once in Doctor Read on the next successful launch. Public-facing in-app guides are limited to README, Changelog, and MM Integration so users do not need to dig through development notes.
 
 If the app fails before the GUI appears, Doctor also writes early startup diagnostics to `%LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log` whenever its launcher code starts. If Windows blocks the executable before that point, use the included startup helper from the extracted folder and send the generated report.
+
+v1.0.4 also adds a safer operation boundary around GUI actions and report rendering. If an operation fails after Doctor is already open, Doctor tries to contain that failure, explain it in Doctor Read, and write local tool-side evidence instead of letting one bad path, parser result, or display step take down the whole app.
 
 ## Who Benefits
 

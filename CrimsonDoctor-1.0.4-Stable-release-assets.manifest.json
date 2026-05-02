@@ -1,0 +1,17 @@
+﻿{
+    "schema_version":  "crimson_doctor.release_assets_manifest.v1",
+    "app":  "Crimson Doctor",
+    "version":  "1.0.4",
+    "channel":  "Stable",
+    "created_utc":  "2026-05-02T17:42:08.2753187Z",
+    "package_folder":  "CrimsonDoctor-1.0.4-Stable-Windows-Compat",
+    "zip":  "CrimsonDoctor-1.0.4-Stable-windows-compat-folder.zip",
+    "zip_sha256":  "cb2046d092ac344edb8156e6efa88788f2e0ac981280b2e87dcb1e2ecb55cc63",
+    "python_target":  "3.12",
+    "package_style":  "pyinstaller-folder-compat",
+    "notes":  [
+                  "No onefile extractor",
+                  "Runtime files kept beside executable for compatibility",
+                  "Startup diagnostic helper included"
+              ]
+}

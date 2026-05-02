@@ -99,3 +99,11 @@ Public versions are listed from earliest to newest. Entries describe user-facing
 - Trimmed safe PySide runtime baggage from the compatibility package, including unused PDF image support, non-user platform plugins, TLS/network-information plugins, and non-English/Korean Qt translation files.
 - Marked the public line as `Stable` in the app display and public docs after compatibility-folder launch testing passed.
 - Kept the release lane focused on the working compatibility package rather than expanding the A/B/C/D matrix further.
+
+## Crimson Doctor v1.0.4 Stable
+
+- Added a Safe Operation Layer around GUI actions, menu actions, selected audit actions, and report-rendering callbacks so failures after Doctor is open are routed into Doctor Read instead of escaping as app crashes.
+- Added local GUI operation-failure evidence records under the Crimson Doctor config folder for contained tool-side failures.
+- Added controlled Doctor Read wording variation for contained operation failures and expanded Hurry up acknowledgements, including tone-aware lines for High, Mid, and Low Your IQ settings.
+- Hardened background-operation success handling so a worker can finish successfully even if the final display/render step fails; Doctor resets the busy state and explains the contained failure.
+- Kept the v1.0.3 PyInstaller folder compatibility lane and Python 3.12 packaging target while refreshing version metadata and public docs for v1.0.4 Stable.

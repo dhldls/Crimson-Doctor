@@ -1,8 +1,12 @@
-﻿Crimson Doctor 1.0.3 Stable
+﻿Crimson Doctor 1.0.4 Stable - Windows compatibility package
 
-1. Extract the full ZIP.
-2. Open the extracted CrimsonDoctor-1.0.3-Stable folder.
-3. Run CrimsonDoctor.exe.
-4. If nothing appears, run Launch_CrimsonDoctor_with_startup_report.cmd and send the generated report.
+Run:
+  CrimsonDoctor.exe
 
-This is the compatibility folder build. It is less visually tidy than a single EXE, but it avoids the one-file extractor behavior that failed for some users.
+If the GUI does not appear, run:
+  Launch_CrimsonDoctor_with_startup_report.cmd
+
+Doctor also writes startup diagnostics to:
+  %LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log
+
+Send the startup report/log with your system details if launch still fails.
