@@ -41,7 +41,7 @@ python -m crimson_doctor support-bundle --source ".\reports\support.md" --includ
 
 Managers should consume Doctor's JSON output, not scrape Doctor's human-readable narration.
 
-Doctor Read wording is intentionally a user-facing narration layer, not a data contract. In v1.0.2 it includes 3 readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, and 72 external manager conflict/load-order guidance lines. The wording can vary by selected readability mode, but the evidence, hashes, classifications, and structured JSON output should remain stable for manager integrations.
+Doctor Read wording is intentionally a user-facing narration layer, not a data contract. In v1.0.3 Stable it includes 3 readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, and 72 external manager conflict/load-order guidance lines. The wording can vary by selected readability mode, but the evidence, hashes, classifications, and structured JSON output should remain stable for manager integrations.
 
 ## Core Rule
 

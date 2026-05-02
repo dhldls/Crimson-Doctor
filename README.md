@@ -2,11 +2,11 @@
 
 Crimson Doctor is the major successor to CD JSON Mod Auto Patcher.
 
-Current public release: v1.0.3.
+Current public release: v1.0.3 Stable.
 
 Crimson Doctor is a local Windows utility for Crimson Desert JSON mod patching, compatibility checks, diagnostics, audit reports, and recovery planning. It is strongest around modded setups, but several workflows also help vanilla players diagnose launch, save, cloud, baseline, and support-report issues.
 
-The v1.0.3 package is backed by 40,000+ lines of local app, GUI, CLI, patcher-engine, diagnostic, audit, and recovery code. The Windows compatibility package uses the PyInstaller folder build that proved most reliable in public startup testing, with bundled runtime files, bundled public docs, and no required Python install for normal users.
+The v1.0.3 Stable package is backed by 40,000+ lines of local app, GUI, CLI, patcher-engine, diagnostic, audit, and recovery code. The Windows compatibility package uses the PyInstaller folder build that proved most reliable in public startup testing, with bundled runtime files, bundled public docs, and no required Python install for normal users.
 
 ## Author Note
 
@@ -52,6 +52,8 @@ Doctor is built to answer the support question in a readable order: what happene
 The pulse monitor in the header is a functional activity/status indicator, not just decoration. It idles calmly, reacts while Doctor is working, and changes behavior briefly when a failure path needs attention.
 
 If the previous Crimson Doctor tool crash or startup failure produced a self-diagnostic record, Doctor shows that notice once in Doctor Read on the next successful launch. Public-facing in-app guides are limited to README, Changelog, and MM Integration so users do not need to dig through development notes.
+
+If the app fails before the GUI appears, Doctor also writes early startup diagnostics to `%LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log` whenever its launcher code starts. If Windows blocks the executable before that point, use the included startup helper from the extracted folder and send the generated report.
 
 ## Who Benefits
 

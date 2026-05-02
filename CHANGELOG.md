@@ -91,10 +91,11 @@ Public versions are listed from earliest to newest. Entries describe user-facing
 - Added the Navigator home tab with a broad public issue/goal library, moved triage routing out of Settings, and wired Next, Back, Run This Step, Skip, and Mark Done guided workflows through Doctor Read.
 - Expanded Doctor Read wording variation with 3 Your IQ readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, 72 external manager conflict/load-order guidance lines, stable seeded wording selection, and short-term repeat avoidance.
 
-## Crimson Doctor v1.0.3
+## Crimson Doctor v1.0.3 Stable
 
 - Promoted the public compatibility package to the PyInstaller folder build after public startup testing confirmed it opened on systems where the previous Nuitka package variants failed.
 - Added full-package PyInstaller collection for Crimson Doctor modules so CLI, audit, case-memory, config edit, release-readiness, and save-sample probe surfaces are present in the compatibility build instead of relying only on static Qt GUI import discovery.
 - Added earlier boot diagnostics that write a local `%LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log` before entering the Qt GUI, while preserving the existing startup-error report path for failures Doctor can catch after its launcher starts.
 - Trimmed safe PySide runtime baggage from the compatibility package, including unused PDF image support, non-user platform plugins, TLS/network-information plugins, and non-English/Korean Qt translation files.
+- Marked the public line as `Stable` in the app display and public docs after compatibility-folder launch testing passed.
 - Kept the release lane focused on the working compatibility package rather than expanding the A/B/C/D matrix further.

@@ -1,0 +1,10 @@
+﻿{
+    "schema_version":  "crimson_doctor.release_assets.v1",
+    "version":  "1.0.3 Stable",
+    "python_runtime":  "3.12.10",
+    "package":  "CrimsonDoctor-1.0.3-Stable-windows-compat-folder.zip",
+    "package_sha256":  "2B0F8CD65ED303C591EB51EF9C9668621E3E331058B99CCD32615E18D7C452CD",
+    "package_size_bytes":  44366377,
+    "app_folder":  "CrimsonDoctor-1.0.3-Stable-Windows-Compat/CrimsonDoctor-1.0.3-Stable",
+    "generated_at":  "2026-05-02T05:24:44.1574536-06:00"
+}
