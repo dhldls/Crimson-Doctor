@@ -106,4 +106,3 @@ Public versions are listed from earliest to newest. Entries describe user-facing
 - Added local GUI operation-failure evidence records under the Crimson Doctor config folder for contained tool-side failures.
 - Added controlled Doctor Read wording variation for contained operation failures and expanded Hurry up acknowledgements, including tone-aware lines for High, Mid, and Low Your IQ settings.
 - Hardened background-operation success handling so a worker can finish successfully even if the final display/render step fails; Doctor resets the busy state and explains the contained failure.
-- Kept the v1.0.3 PyInstaller folder compatibility lane and Python 3.12 packaging target while refreshing version metadata and public docs for v1.0.4 Stable.
