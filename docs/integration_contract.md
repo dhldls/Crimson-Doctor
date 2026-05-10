@@ -1,10 +1,14 @@
-# Manager Integration Contract
+# MM / Tool Integration Contract
 
 This project must be compatibility-first. It should never emit files, reports, manifests, backups, or "repairs" that Crimson Desert or existing modding tools cannot actually understand.
 
 ## Quick Integration Summary
 
-This document is for mod manager authors, patcher authors, support helpers, and tool maintainers who want Crimson Doctor to work beside their own tooling without replacing it.
+This document is for MM authors, save-editor authors, patcher authors, launcher-helper authors, support helpers, and tool maintainers who want Crimson Doctor (CDr) to work beside their own tooling without replacing it.
+
+Tool compatibility in CDr is based on public mod/tool pages, visible user-facing behavior, user-provided reports, exported logs, visible output files, public command/output behavior, and samples that users or tool authors choose to share. Doctor does not decompile, reverse engineer, copy, bundle, or probe private tool code or private tool state, and it does not claim official endorsement from another tool unless that maintainer explicitly provides it.
+
+If you maintain a Crimson Desert MM, save editor, patcher, launcher/helper, or other tool and want Doctor to support your report format more accurately, DM me with a sample report, exported log, or safe output format. Doctor can add compatibility around documented/exported reports or safe handoff workflows without replacing your tool.
 
 Use Doctor for:
 
@@ -17,37 +21,37 @@ Use Doctor for:
 Call Doctor when:
 
 - a user is about to launch a risky modded setup
-- a mod manager needs one read-only preflight result before launch
+- an MM, save editor, patcher, or launcher/helper needs one read-only preflight result before launch
 - a mod author needs structured evidence instead of screenshots
-- a user reports "the manager applied mods, but nothing changed in game"
+- a user reports "the tool applied mods or edits, but nothing changed in game"
 - a game update breaks JSON/value mods and the community needs versioned evidence
 - sample evidence is needed before deeper compatibility, parser, archive, or save work can be claimed
 
 Sample-driven compatibility work:
 
-- prefer Doctor support bundles, manager reports, JSON mod folders, copied save folders, copied archive/output evidence, and Launch Watch reports
-- label samples clearly: known-working, known-broken, vanilla, modded, game version, manager used, what changed, and what failed
+- prefer Doctor support bundles, MM/save-editor/tool reports, JSON mod folders, copied save folders, copied archive/output evidence, and Launch Watch reports
+- label samples clearly: known-working, known-broken, vanilla, modded, game version, MM/tool used, what changed, and what failed
 - do not request personal files, account data, passwords, unrelated folders, or full game installs
 - larger copied samples should only be requested when they are truly needed for compatibility or format research
 
-Short CLI surface for managers:
+Short command surface for tools:
 
 ```powershell
-python -m crimson_doctor manager-contract --output ".\reports\manager-contract.md" --json-output ".\reports\manager-contract.json"
-python -m crimson_doctor manager-preflight --include-dir ".\mods" --game-root "C:\Steam\steamapps\common\Crimson Desert" --save-root "C:\Users\<Username>\AppData\Local\Pearl Abyss\CD\save" --current-exe "C:\Steam\steamapps\common\Crimson Desert\CrimsonDesert.exe" --output-dir ".\reports" --print-json
-python -m crimson_doctor json-patcher scan --current-exe "C:\Path\To\CrimsonDesert.exe" --input ".\mods\example.json" --json-output ".\reports\json-scan.json" --tone mid
-python -m crimson_doctor support-bundle --source ".\reports\support.md" --include-dir ".\reports" --output-dir ".\support-bundle" --print-json
+crimson-doctor manager-contract --output ".\reports\manager-contract.md" --json-output ".\reports\manager-contract.json"
+crimson-doctor manager-preflight --include-dir ".\mods" --game-root "C:\Steam\steamapps\common\Crimson Desert" --save-root "C:\Users\<Username>\AppData\Local\Pearl Abyss\CD\save" --current-exe "C:\Steam\steamapps\common\Crimson Desert\CrimsonDesert.exe" --output-dir ".\reports" --print-json
+crimson-doctor json-patcher scan --current-exe "C:\Path\To\CrimsonDesert.exe" --input ".\mods\example.json" --json-output ".\reports\json-scan.json" --tone mid
+crimson-doctor support-bundle --source ".\reports\support.md" --include-dir ".\reports" --output-dir ".\support-bundle" --print-json
 ```
 
-Managers should consume Doctor's JSON output, not scrape Doctor's human-readable narration.
+External tools should consume Doctor's JSON output, not scrape Doctor's human-readable narration.
 
-Doctor Read wording is intentionally a user-facing narration layer, not a data contract. In v1.0.4 Stable it includes 3 readability modes, 65 Navigator issue/goal topics, 16 guided triage lanes, 132 curated notice/blocker phrase parts, 144 safe-operation failure phrase parts, 96 Hurry up acknowledgement lines, 18 JSON patcher interpretation categories, 108 JSON patcher next-step guidance lines, and 72 external manager conflict/load-order guidance lines. The wording can vary by selected readability mode, but the evidence, hashes, classifications, and structured JSON output should remain stable for manager integrations.
+Doctor Read wording is intentionally a user-facing narration layer, not a data contract. The wording can vary by selected readability mode, but the evidence, hashes, classifications, and structured JSON output should remain stable for tool integrations.
 
-When manager-facing or GUI-triggered operations fail after Doctor has already launched, Doctor attempts to contain the failure, write local operation-failure evidence, and return a Doctor Read explanation instead of crashing the app. Integrations should still treat structured JSON outputs as the authoritative contract; Doctor Read is for humans.
+When tool-facing or GUI-triggered operations fail after Doctor has already launched, Doctor attempts to contain the failure, write local operation-failure evidence, and return a Doctor Read explanation instead of crashing the app. Integrations should still treat structured JSON outputs as the authoritative contract; Doctor Read is for humans.
 
 ## Core Rule
 
-If Crimson Desert, an external MM, a patcher, a save/editor tool, or another supported tool would look at our output and treat it as nonsense, then the feature is not done.
+If Crimson Desert, an external MM, a patcher, a save/editor tool, a launcher/helper, or another supported tool would look at our output and treat it as nonsense, then the feature is not done.
 
 No invented aliases. No invented field names. No synthetic save structures. No "fixed" output unless the game/tool acceptance path is real and proven.
 
@@ -69,7 +73,7 @@ Acceptable for MVP.
 ### Tier 1: Verified Parser
 
 - parses a real format from real samples
-- has fixtures from known-good files
+- has known-good sample coverage
 - rejects unknown versions instead of guessing
 - records unsupported fields as unknown, not invented names
 
@@ -136,25 +140,6 @@ Forbidden until proven:
 - purging orphaned data from save files without a verified parser and game-load validation
 - claiming safe mode or sandbox isolation if Doctor cannot restore the exact prior state
 - altering cloud-managed saves without explicit user confirmation and an out-of-band backup
-
-## Runtime Memory Integration Gate
-
-External runtime-memory tools prove that Python-based utilities can attach to a live game process when they deliberately use process-memory libraries, AOB scans, remote allocation, code caves, or overlay layers. That feasibility does not make runtime attachment appropriate for Crimson Doctor's normal diagnostic path.
-
-Runtime memory work must be treated as a separate high-risk tier:
-
-- opt-in only
-- visible to the user
-- never required for ordinary save recovery, support reports, FTS logging, CTD logging, or Doctor's own self-diagnostics
-- no injection or code patches for MVP crash logging
-- no silent persistent process attachment
-- clear UAC/admin explanation if required
-- version-gated AOB signatures with a hard fail when signatures do not match
-- original bytes captured before any patch
-- uninstall/restore path proven before exposing the feature
-- local logs explaining every process attach, read, allocation, patch, and restore
-
-Any runtime-memory adapter must remain separate from the normal product lane. The main product remains read-only, sidecar, and evidence-first.
 
 ## Transaction Requirements
 
@@ -223,7 +208,7 @@ Adapters should return structured data plus confidence levels. Low confidence sh
 
 CD JSON Mod Auto Patcher v0.8.0 is now the Doctor-native patcher core. Publicly, Crimson Doctor should read as the major continuation of that patcher: JSON mod patching, JSON mod compatibility checking, and patcher-aware troubleshooting are first-class workflows, not hidden side utilities.
 
-Internally, Doctor vendors the v0.8.0 engine and calls its headless scan/patch path in-process.
+Doctor includes the v0.8.0 patcher behavior through its public Patcher and CLI surfaces.
 
 Doctor should recognize:
 
@@ -236,7 +221,7 @@ Doctor should recognize:
 - `archive_overlay_targets` and archive overlay handoff metadata
 - capabilities/report JSON with `engine: "CD JSON Patcher"`
 
-Doctor should not hardcode a local output folder layout from the old development sandbox. The contract is the JSON schema/lingo, the headless/capabilities report shape, and Doctor's wrapper around the vendored v0.8.0 engine.
+Doctor should not depend on a user's temporary output folder layout. The contract is the JSON report shape, capabilities output, and public Patcher behavior.
 
 Compatibility behavior:
 
@@ -252,21 +237,21 @@ Compatibility behavior:
 
 ## CLI Contract For Managers
 
-If mod managers want to call Doctor, they should use the public command surface rather than importing Python internals. Source checkouts can call this surface through `python -m crimson_doctor ...`; packaged/installable builds expose the same parser as `crimson-doctor ...`.
+If mod managers want to call Doctor, they should use the public command surface rather than private modules. Integration builds expose this parser as `crimson-doctor ...`.
 
 Current headless-safe command families:
 
 ```text
 crimson-doctor manager-preflight --include-dir <mods> --game-root <game> --save-root <saves> --current-exe <exe> --print-json
 crimson-doctor manager-contract --print-json
+crimson-doctor mod-package-intake --input <archive-or-folder> --print-json
+crimson-doctor manager-handoff-preview --input <archive-or-folder> --target-manager <manager> --print-json
 crimson-doctor scan --save-root <path>
 crimson-doctor timeline --save-root <path> --backup-dir <path> --print-json
 crimson-doctor triage-plan --symptom <symptom> --print-json
 crimson-doctor evidence-intake-plan --focus <focus> --print-json
 crimson-doctor report --game-root <path> --include-dir <path> --print-json
 crimson-doctor support-bundle --source <report.md> --include-dir <reports> --output-dir <path> --print-json
-crimson-doctor brain-audit --game-root <path> --include-dir <path> --print-json
-crimson-doctor case-memory approve --report <support.json> --case-memory <path> --print-json
 crimson-doctor toolchain-audit --include-dir <path> --iq <high|mid|low> --print-json
 crimson-doctor mod-output-audit --include-dir <path> --print-json
 crimson-doctor archive-workflow-audit --include-dir <path> --print-json
@@ -283,7 +268,7 @@ crimson-doctor json-patcher capabilities --print-json
 crimson-doctor json-patcher backup-inventory --print-json
 crimson-doctor json-patcher archive-current-exe --current-exe <path> --print-json
 crimson-doctor json-patcher scan --current-exe <path> --input <json-or-folder> --print-json
-crimson-doctor json-patcher patch --current-exe <path> --input <json-or-folder> --output-dir <path> --print-json
+crimson-doctor json-patcher patch --current-exe <path> --input <json-or-folder> --output-dir <path> --export-profile <doctor-enhanced|manager-safe> --print-json
 crimson-doctor safe-mode plan --game-root <path> --print-json
 crimson-doctor sandbox plan --game-root <path> --real-save-root <path> --sandbox-root <path> --print-json
 crimson-doctor baseline create --game-root <path> --output <baseline.json>
@@ -295,20 +280,23 @@ crimson-doctor watch-launch --output-dir <path> -- <CrimsonDesert.exe>
 
 Current contract:
 
-- `manager-preflight` is the preferred single-call launch-gate command for external manager UI because it aggregates the main read-only pre-launch checks, Doctor Brain summary, and Doctor Verdict into one versioned payload
-- `toolchain-audit` and `manager-preflight` may ingest supported external manager bug reports found under supplied include directories
-- manager bug-report intake is read-only and only turns report rows into evidence, warning summaries, load-order test suggestions, and compatibility notes
-- Doctor must not rewrite another manager's order, config, database, backup registry, or deployment state from a parsed report
+- `manager-preflight` is the preferred single-call launch-gate command for external MM/tool UI because it aggregates the main read-only pre-launch checks and Doctor Verdict into one versioned payload
+- `toolchain-audit` and `manager-preflight` may ingest supported external MM/save-editor/tool reports found under supplied include directories
+- `mod-package-intake` is read-only package-shape evidence; it does not extract, install, convert, copy, or run packages
+- `manager-handoff-preview` maps a selected manager route from intake evidence, but still does not create conversion/copy output
+- archive/table proof commands are copy-lab/report surfaces unless a future release explicitly documents otherwise; they should not be treated as live deployment APIs
+- tool report intake is read-only and only turns report rows into evidence, warning summaries, load-order test suggestions, and compatibility notes
+- Doctor must not rewrite another tool's order, config, database, backup registry, save workspace, or deployment state from a parsed report
+- Doctor must not decompile, reverse engineer, copy, bundle, or probe private tool code or private tool state for compatibility
 - mount-time backup rows such as `vanilla_backup=n/a (mount-time)` must be treated as not applicable, not as missing backup evidence
 - commands that support `--print-json` write machine-readable JSON to stdout
 - commands that support `--json-output <path>` write the same evidence to disk
-- Markdown output is for humans; JSON output is for managers and automation
+- Markdown output is for humans; JSON output is for tools and automation
 - schemas must be versioned with `schema_version` where the workflow owns a schema
-- managers should treat unknown schema versions, `unsupported`, `blocked`, or high-severity findings as user-review cases
-- managers should not parse Doctor's human narration as an API
-- `brain-audit` exposes Doctor's deterministic fact/rule summary for manager UI and support triage
-- `case-memory approve` is opt-in local learning from a user-approved support JSON report; managers must not approve or upload cases silently
+- external tools should treat unknown schema versions, `unsupported`, `blocked`, or high-severity findings as user-review cases
+- external tools should not parse Doctor's human narration as an API
 - `config-edit plan` is read-only; `config-edit apply` and `config-edit rollback` are managed-write actions that require an explicit user action, parser validation, backup evidence, and a visible manifest
+- JSON patcher `doctor-enhanced` output keeps Doctor metadata for its own reports; manager-safe output strips Doctor-only metadata from generated patched copies when canonical JSON patch fields can still be proven
 
 Exit-code contract:
 
@@ -324,7 +312,7 @@ Manager API hardening:
 - stricter machine-readable schema files should only be added when external callers need validation beyond the current schema index
 - GUI-only features stay blocked until an equivalent CLI/JSON report path exists
 
-This lets an external MM or adjacent tool consume Doctor results without guessing and without depending on unstable internals.
+This lets an external MM or adjacent tool consume Doctor results without guessing.
 
 ## Game File Truth Gates
 
@@ -371,7 +359,7 @@ Before calling a feature supported, collect:
 
 Required checks:
 
-- parse fixtures without crashing
+- parse known samples without crashing
 - reject unknown samples clearly
 - preserve byte-for-byte backups
 - produce deterministic reports
