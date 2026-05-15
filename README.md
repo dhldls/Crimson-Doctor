@@ -18,6 +18,9 @@ Doctor Read should show what happened, why it matters, and the next small thing 
 - JSON mod patching and validation support
 - save and recovery planning
 - mod compatibility and manager-output checks
+- DMM-centered setup support from visible DMM logs, state files, profiles, mount history, and output evidence
+- external tool awareness for visible public Crimson Game Mods Tool evidence (Other MMs, save editors, patchers etc.)
+- read-only archive entry evidence, including PAMT/PAZ listing and decode-probe support
 - a local read-only system check
 
 ## How To Use It
@@ -35,6 +38,7 @@ Doctor Read should show what happened, why it matters, and the next small thing 
 - no runtime hooks
 - no DLL injection
 - no silent edits to another tool's private state
+- no automation of another manager's private database or workflow
 
 ## Distribution
 
@@ -43,3 +47,5 @@ CDr is freeware for normal Crimson Desert troubleshooting and modding support.
 Do not sell, reupload, repackage, modify, reverse engineer, or redistribute it without permission. Link back to the official release page when sharing it.
 
 See `LICENSE.txt` for the full freeware license.
+
+Third-party notices for referenced open-source components live in `THIRD_PARTY_NOTICES.md`.

@@ -1,8 +1,8 @@
 # Security Policy
 
-## Supported Version
+## Supported Versions
 
-The current supported public release line is Crimson Doctor v2.0.0.
+The supported public release line is official Crimson Doctor v2.x builds.
 
 Older preview, audit, or internal builds are not supported for public security review.
 
@@ -31,7 +31,7 @@ Preferred path:
 
 1. Use GitHub Security Advisories if available.
 2. If private advisories are not available, open a minimal public issue that says a security report exists, without posting exploit details, private paths, crash dumps, save data, or mod archives.
-3. Wait for follow-up before sharing sensitive details.
+3. Wait for maintainer follow-up before sharing sensitive details.
 
 Useful report details:
 
