@@ -48,4 +48,4 @@ Do not sell, reupload, repackage, modify, reverse engineer, or redistribute it w
 
 See [`LICENSE.txt`](https://github.com/dhldls/Crimson-Doctor?tab=License-1-ov-file) for the full freeware license.
 
-Third-party notices for referenced open-source components live in `THIRD_PARTY_NOTICES.md`.
+Third-party notices for referenced open-source components live in [`THIRD_PARTY_NOTICES.md`](https://github.com/dhldls/Crimson-Doctor/blob/main/THIRD_PARTY_NOTICES.md).
