@@ -4,11 +4,10 @@ Crimson Doctor is developed by dhldls. The notices below cover open-source refer
 
 ## crimson-desert-unpacker
 
-Project: `crimson-desert-unpacker`
+Project: [`crimson-desert-unpacker`](https://github.com/lazorr410/crimson-desert-unpacker)
 
 Author: lazorr410
 
-Repository: https://github.com/lazorr410/crimson-desert-unpacker
 
 License: MIT
 
