@@ -1,21 +1,20 @@
 # Changelog
 
-Public versions are listed from newest to oldest. Entries focus on user-facing changes, compatibility, and tool-author relevant behavior.
+Public versions are listed from newest to oldest.
 
 ## Crimson Doctor v2.0.2 - Public Hotfix
 
 - Updated the public build line with post-release UI, startup, and support-flow fixes.
-- Added a real startup boot pass behind the launch splash. Doctor now uses the opening sequence to run bounded local startup checks before showing Home.
+- Fixed package/report version context so reports no longer show an outdated current game version. When an exact game version is not known, Doctor now shows Steam build and version release date context instead.
+- Fixed long Doctor Read results so Hurry / quick readability controls surface correctly, and Details no longer repeats the same opening result line.
+- Added a startup boot pass behind the launch splash. Doctor now runs bounded local startup checks before showing Home.
 - Startup Doctor Read now summarizes useful boot findings in the selected readability mode, including likely game-root/build evidence when available, without requiring the user to choose a folder first.
 - Changed the default Doctor Read readability to Mid so first-run startup text is readable by normal users while High remains available for forensic detail.
-- Improved the splash/loading presentation so it behaves like an actual boot phase instead of a still image.
-- Added clearer spacing between startup findings and the normal Home prompt.
 - Added Doctor Read result cards for completed actions: visible results now lead with `What happened`, `Why it matters`, and `Next step` before deeper details.
 - Added quick High/Mid/Low Doctor Read view buttons after typing finishes, so users can reread the current response in another readability level without changing Settings.
-- Added a public-copy quality guard so visible Doctor Read text does not regress into dev-facing wrapper language, schema chatter, tone-mode notes, or internal implementation wording.
-- Improved vague issue handling. Searches such as `bug report`, `github issue`, `not work`, or `nothing work` now route toward `Make Support Receipt` so users can collect reproducible evidence instead of guessing.
+- Improved support-report routing when users type vague problem descriptions such as `not working` or `nothing happens`.
 - Expanded `Make Support Receipt` guidance so issue reports ask for the clicked route, input mod/package, Doctor output/report, mod manager used, current game version, last known working version, and visible error text.
-- Added read-only pycrimson artifact awareness for external output/evidence recognition. Doctor treats pycrimson-style files as external tool evidence and keeps archive/decode/copy-lab behavior inside pre-existing Doctor-owned gates.
+- Added read-only pycrimson artifact awareness for external output/evidence recognition. Doctor treats pycrimson-style files as external tool evidence and keeps archive/decode/copy-lab behavior inside Doctor-owned gates.
 - Added read-only CrimsonDesertTools awareness where public source evidence supports recognizing generated outputs and related utility artifacts.
 
 ## Crimson Doctor v2.0.1 - Stable
