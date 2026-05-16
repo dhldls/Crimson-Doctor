@@ -46,6 +46,6 @@ CDr is freeware for normal Crimson Desert troubleshooting and modding support.
 
 Do not sell, reupload, repackage, modify, reverse engineer, or redistribute it without permission. Link back to the official release page when sharing it.
 
-See `LICENSE.txt` for the full freeware license.
+See [`LICENSE.txt`](https://github.com/dhldls/Crimson-Doctor?tab=License-1-ov-file) for the full freeware license.
 
 Third-party notices for referenced open-source components live in `THIRD_PARTY_NOTICES.md`.
