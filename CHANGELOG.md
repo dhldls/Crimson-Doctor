@@ -1,14 +1,31 @@
 # Changelog
 
-Public versions are listed from newest to oldest.
+Public versions are listed from newest to oldest. Entries focus on user-facing changes, compatibility, and tool-author relevant behavior.
+
+## Crimson Doctor v2.0.2 - Public Hotfix
+
+- Updated the public build line with post-release UI, startup, and support-flow fixes.
+- Added a real startup boot pass behind the launch splash. Doctor now uses the opening sequence to run bounded local startup checks before showing Home.
+- Startup Doctor Read now summarizes useful boot findings in the selected readability mode, including likely game-root/build evidence when available, without requiring the user to choose a folder first.
+- Changed the default Doctor Read readability to Mid so first-run startup text is readable by normal users while High remains available for forensic detail.
+- Improved the splash/loading presentation so it behaves like an actual boot phase instead of a still image.
+- Added clearer spacing between startup findings and the normal Home prompt.
+- Added Doctor Read result cards for completed actions: visible results now lead with `What happened`, `Why it matters`, and `Next step` before deeper details.
+- Added quick High/Mid/Low Doctor Read view buttons after typing finishes, so users can reread the current response in another readability level without changing Settings.
+- Added a public-copy quality guard so visible Doctor Read text does not regress into dev-facing wrapper language, schema chatter, tone-mode notes, or internal implementation wording.
+- Improved vague issue handling. Searches such as `bug report`, `github issue`, `not work`, or `nothing work` now route toward `Make Support Receipt` so users can collect reproducible evidence instead of guessing.
+- Expanded `Make Support Receipt` guidance so issue reports ask for the clicked route, input mod/package, Doctor output/report, mod manager used, current game version, last known working version, and visible error text.
+- Added read-only pycrimson artifact awareness for external output/evidence recognition. Doctor treats pycrimson-style files as external tool evidence and keeps archive/decode/copy-lab behavior inside pre-existing Doctor-owned gates.
+- Added read-only CrimsonDesertTools awareness where public source evidence supports recognizing generated outputs and related utility artifacts.
 
 ## Crimson Doctor v2.0.1 - Stable
 
-- Promoted DMM setup support from cautious external-manager recognition into official read-only DMM evidence full awareness.
+- Promoted DMM setup support from cautious external-manager recognition into official read-only DMM evidence awareness.
 - CDr can read visible DMM logs, state/config files, profiles, mount history, activity records, hash/baseline evidence, and output mismatch clues, then route users to matching DMM-side workflows when the evidence belongs there.
+- DMM recognition now includes `DMM`, `Definitive Mod Manager`, common filename/path variants, and author-token evidence such as `cracker` where it appears in visible logs or folders.
 - DMM setup guidance recognizes Profiles / Load Order, Save Tools, Mod Packs / Snapshots, Texture / Browser UI, Language / Font, ReShade, OptiScaler, Mod Editor, Mount History, Activity Log, Game State, Pre-flight / Mount Preview, Backup Manager, ASI Mods, source-backed state recovery, interrupted mounts, stale mount locks, Force Reset DMM State, import/drag-drop, active overlay, force-in-place browser mods, and platform Launch Game evidence.
 - Semantic table JSON intake recognizes DMM-family single-target and multi-target field-intent envelopes as parser-coupled evidence, including record-level operations. Durable application remains with DMM or another proven parser path.
-- Ultimate JSON Mod Manager, CrimsonForge, and Swiss Knife visible evidence support was expanded for read-only logs, state files, package markers, output markers, and public/export surfaces where source or sample evidence supports it.
+- Ultimate JSON Mod Manager, CrimsonForge, and NattKh / Swiss Knife visible evidence support was expanded for read-only logs, state files, package markers, output markers, and public/export surfaces where source or sample evidence supports it.
 - Added a guided `Guide Package` Home route for after-game-update failures. It walks package intake, updated-game health, visible manager evidence, mod-output mismatch, and launch confirmation in order.
 - Added the `Test My Mod` Home route for mod authors who want package-shape, JSON/manager readiness, setup context, visible output, launch evidence, and an author-facing receipt.
 - Home route cards are now scenario bundles instead of raw backend tools. Additional pages cover setup help, DMM/manager help, ASI/DLL crash evidence, config planning, clean test sessions, broken/working package proof, old/new game update proof, setup blueprint drift, residue audit, archive/table proof, and dependency checks.
@@ -22,9 +39,10 @@ Public versions are listed from newest to oldest.
 
 ## Crimson Doctor v2.0.0 - Native Refresh
 
-- Rebuilt Crimson Doctor as the Rust/Slint native line with a single Windows executable
+- Rebuilt Crimson Doctor as the Rust/Slint native line with a single Windows executable, native source package, public release ZIP, and GitHub-ready source folder.
+- Replaced the legacy public app direction with the new native Rust/Slint shell while preserving CDr's identity: crashlogger, diagnostic narrator, audit layer, recovery planner, and support-report companion.
 - Added the new Home, Advanced Tools, Reports, and Settings structure with Doctor Read as the central explanation and result panel.
-- Added deterministic Doctor Read tone/readability handling for user-selected wording difficulty while keeping evidence, hashes, paths, findings, and safety gates unchanged.
+- Added Doctor Read readability modes for High, Mid, and Low.
 - Ported launch/crash evidence routes into native code: path probe, launch watch, timeout/fail-to-start handling, exported Windows Event XML parsing, local event collection, and launch-history readouts.
 - Ported JSON mod validation, merge preview, patch readiness, JMM-safe export, old/new author package parity, and Doctor-owned JSON copy output lanes.
 - Ported mod package intake and manager handoff preview for downloaded archives, loose folders, JSON packages, ASI/DLL packages, config presets, manifest/files packages, modinfo/files packages, and archive/binary replacement evidence.
@@ -34,13 +52,12 @@ Public versions are listed from newest to oldest.
 - Ported native plugin audit for ASI/DLL loader/plugin surfaces and fault-module correlation without injection, hooks, or plugin execution.
 - Ported support reports, redacted support bundles, report indexing, report export/reveal planning, report comparison, and local evidence receipts.
 - Ported setup blueprinting, dependency chain checks, residue audit, reference intake, reference corpus/case reports, save sample probes, workspace planning, and local settings persistence.
-- Added archive/table proof lanes for read-only PAZ/PAMT/PAPGT/PABGB/PABGH evidence, PAMT map proof, copied-output copy-labs, PAB table/record proof, and version-audit drift reports. Live archive deployment remained locked.
+- Added archive/table proof lanes for PAZ/PAMT/PAPGT/PABGB/PABGH evidence, PAMT map proof, copied-output copy-labs, PAB table/record proof, and version-audit drift reports.
 
 ## Crimson Doctor v1.1.0 - Native Preview
 
 - Introduced the first native Slint shell direction.
 - Added the cleaner top-level Home / Advanced Tools / Reports / Settings structure.
-- Kept Doctor Read as the main result area.
 - Added local read-only system checks and early native health/report wiring.
 
 ## Crimson Doctor v1.0.4 Stable
@@ -55,13 +72,13 @@ Public versions are listed from newest to oldest.
 - Promoted the public compatibility package after public startup testing confirmed it opened on systems where earlier package variants failed.
 - Added full-package collection for Crimson Doctor modules so CLI, audit, case-memory, config edit, release-readiness, and save-sample probe surfaces are present in the compatibility build instead of relying only on static GUI import discovery.
 - Added earlier boot diagnostics that write a local `%LOCALAPPDATA%\CrimsonDoctor\startup_diagnostic.log` before entering the Qt GUI, while preserving the existing startup-error report path for failures Doctor can catch after its launcher starts.
+- Reduced the compatibility package size by removing unused runtime components.
 
 ## Crimson Doctor v1.0.2
 
 - Added clearer public guidance for copied, labeled sample packs when Doctor needs real-world evidence for future compatibility or format work.
 - Added a quick-start summary to the Manager Integration Contract for external manager authors: when to call Doctor, what evidence to pass, what samples help, and which CLI surfaces matter most.
 - Renamed the in-app guide button to `MM Integration` so the bundled manager integration document is easier to recognize.
-- Kept the user download minimal and scanner-friendly: runtime files, README, changelog, and manager integration contract only.
 - Moved structured evidence rows into a dedicated Evidence tab so Doctor Read stays large enough to serve as the primary explanation surface.
 - Enlarged the permanent Doctor Read panel, increased its readable font size, and kept the visible splitter handle for user-controlled panel sizing.
 - Added the Navigator home tab with a broad public issue/goal library, moved triage routing out of Settings, and wired Next, Back, Run This Step, Skip, and Mark Done guided workflows through Doctor Read.
@@ -80,49 +97,49 @@ Public versions are listed from newest to oldest.
 - Added Reference Intake, Reference Corpus, Reference Case, Evidence Intake Plan, Save Sample Probe, and public guidance for copied/labeled sample packs needed for future compatibility or format work.
 - Added Archive Workflow Audit, Archive Proof Plan, Native Plugin Audit, and strict INI/TOML/YAML/text config edit plan/apply/rollback workflows.
 
-## CD JSON Mod Auto Patcher v0.8.0-beta
+## CD JSON Mod Auto Patcher v0.8.0
 
 - Renamed remaining placeholder terminology to `unanchored` while preserving relative-offset anchoring behavior.
 - Added archive-backed target detection, `archive_overlay_plan.json`, patched loose asset handoff output, and archive overlay metadata without direct archive repacking.
 - Improved loose asset relocation, conflict/overlap reports, compatibility output, generated anchor metadata, JSON normalization, UTF-8 BOM handling, GUI responsiveness, and optional safety controls.
 
-## CD JSON Mod Auto Patcher v0.7.1-beta
+## CD JSON Mod Auto Patcher v0.7.1
 
 - Improved drag/drop fallback, shared-delta relocation, bounded manual recovery, byte-context previews, saved recovery profiles, conflict reports, and schema output.
 - Added compatibility databases/reports, UTF-8 BOM tolerance, stronger generated metadata, and GUI layout polish.
 
-## CD JSON Mod Auto Patcher v0.7.0-beta
+## CD JSON Mod Auto Patcher v0.7.0
 
 - Added normal JSON file browsing fallback.
 - Improved loose asset ambiguity handling, safe failure for generic byte patterns, failure categories, next-step advice, conflict reports, manual choices, and resize behavior.
 
-## CD JSON Mod Auto Patcher v0.6.0-beta
+## CD JSON Mod Auto Patcher v0.6.0
 
 - Standardized anchoring wording and generated `anchor_signatures`.
 - Added legacy metadata import, output migration, common JSON layout normalization, field aliases, tolerant byte parsing, alias synchronization, and GUI refresh work.
 
-## CD JSON Mod Auto Patcher v0.5.4-beta
+## CD JSON Mod Auto Patcher v0.5.4
 
 - Added Current Mod Anchoring for current-version static JSON mods.
 - Added anchored signature metadata, multi-signature relocation, ambiguity choice caching, conflict/overlap detection, and compatibility report export.
 
-## CD JSON Mod Auto Patcher v0.5.3-beta
+## CD JSON Mod Auto Patcher v0.5.3
 
 - Updated public app naming, window title behavior, embedded guides, and patcher documentation.
 
-## CD JSON Mod Auto Patcher v0.5.2b-beta
+## CD JSON Mod Auto Patcher v0.5.2b
 
 - Added custom app/window icon support while preserving GUI and headless patching workflows.
 
-## CD JSON Mod Auto Patcher v0.5.2a-beta
+## CD JSON Mod Auto Patcher v0.5.2a
 
 - Improved app labeling and guide text while preserving v0.5.2 patching behavior.
 
-## CD JSON Mod Auto Patcher v0.5.2-beta
+## CD JSON Mod Auto Patcher v0.5.2
 
 - Improved GUI organization, backup/recovery guidance, and output folder naming.
 
-## CD JSON Mod Auto Patcher v0.5.1-beta
+## CD JSON Mod Auto Patcher v0.5.1
 
 - Improved patch preview readability.
 - Improved alias handling and safer failure messages when a patch cannot be located.
