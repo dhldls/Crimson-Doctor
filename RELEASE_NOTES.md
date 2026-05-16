@@ -2,7 +2,7 @@
 
 
 
-##What's New
+## What's New
 
 Startup now uses the opening splash as a real boot pass for local startup checks instead of the old cosmetic placeholder splash screen.
 
@@ -20,7 +20,7 @@ Added read-only awareness for pycrimson and CrimsonDesertTools-style visible art
 
 
 
-##Package
+## Package
 
 App stamp: CDr v2.0.2 / by dhldls
 
@@ -30,7 +30,7 @@ Distribution type: unsigned freeware Windows app
 
 
 
-##Unsigned Build Notice
+## Unsigned Build Notice
 
 This EXE is not Authenticode-signed. Windows SmartScreen or antivirus tools may show an unknown-publisher warning. Verify SHA-256 hashes before running the package.
 
