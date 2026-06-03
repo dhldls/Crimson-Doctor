@@ -17,7 +17,7 @@ You may not, without explicit written permission from the author:
 - redistribute Crimson Doctor or modified versions
 - sell, rent, sublicense, or commercially exploit Crimson Doctor
 - decompile, reverse engineer, disassemble, or attempt to derive source code from Crimson Doctor
-- remove or alter author credit, version information, license text, safety notices, or branding
+- remove or alter author credit, version information, license text, notices, or branding
 - use the Crimson Doctor name, logo, branding, or assets for unofficial builds or derivative tools
 - misrepresent unofficial copies, modified builds, forks, or reuploads as official Crimson Doctor releases
 

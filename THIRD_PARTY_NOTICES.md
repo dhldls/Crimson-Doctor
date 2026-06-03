@@ -4,14 +4,15 @@ Crimson Doctor is developed by dhldls. The notices below cover open-source refer
 
 ## crimson-desert-unpacker
 
-Project: [`crimson-desert-unpacker`](https://github.com/lazorr410/crimson-desert-unpacker)
+Project: `crimson-desert-unpacker`
 
 Author: lazorr410
 
+Repository: https://github.com/lazorr410/crimson-desert-unpacker
 
 License: MIT
 
-Use in Crimson Doctor: reference for Crimson Desert PAZ/PAMT archive reading behavior, including PAMT entry listing, filename-derived ChaCha20 handling, and LZ4 archive-entry evidence. Crimson Doctor keeps this work in a read-only diagnostic/evidence lane and does not expose live game-folder archive deployment through this notice.
+Use in Crimson Doctor: reference for Crimson Desert PAZ/PAMT archive reading behavior, including PAMT entry listing, filename-derived ChaCha20 handling, and LZ4 archive-entry evidence.
 
 MIT License
 
