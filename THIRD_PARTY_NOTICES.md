@@ -35,3 +35,9 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+## Open-Source Crates
+
+Crimson Doctor is built with open-source Rust crates licensed under MIT and/or Apache-2.0, which permit free use in proprietary software with attribution. The complete list is in Cargo.lock. A full machine-generated attribution can be produced with `cargo about generate`.
+
+The Slint GUI toolkit is used under its Royalty-free / Community License (the no-cost option for proprietary desktop applications).

@@ -10,7 +10,7 @@ It ships with `CDrCrashProbe.asi`, the crash logger used by CDr for Crimson Dese
 
 1. Find your Crimson Desert `bin64` folder.
 2. Confirm an ASI loader is present in `bin64`, usually `version.dll`.
-3. Extract the downloaded Crimson Doctor ZIP. Copy `Crash Probe\CDrCrashProbe.asi` into that same `bin64` folder, or import it through your mod manager's ASI install flow.
+3. Extract the downloaded Crimson Doctor ZIP. From the `Crash Probe` folder, copy the file `CDrCrashProbe.asi` (the .asi file itself, not the folder) directly into `bin64`, so it sits as `bin64\CDrCrashProbe.asi`. Or import that `.asi` through your mod manager's ASI install flow.
 4. Run `CrimsonDoctor.exe`.
 
 Crash logs are written to:
@@ -35,7 +35,8 @@ Common starting points:
 - **Verify Probe** to check the `bin64` folder, `CDrCrashProbe.asi`, ASI loader presence, and crash-log evidence.
 - **External Launch Watch** for manual launch/process-health evidence.
 - **After a game update** if mods or managers suddenly stop launching or loading correctly.
-- **Save Recovery** for save timelines, restore plans, staged restores, and rollback records.
+- **Game Update Audit** to compare your current game install against the last saved snapshot.
+- **Save Recovery** for backing up saves, save timelines, restore plans, staged restores, and rollback records.
 
 ## What You Get
 
@@ -47,6 +48,10 @@ Common starting points:
 - Doctor Read explanations in High, Mid, and Low styles
 - JSON mod patching and validation support
 - downloaded save inspection, save and recovery planning
+- Save Recovery backup, automatic pre-launch backup, retention, and restore planning with rollback
+- Config Edit for safe setting changes with backup and rollback
+- Game Update Audit deep-scan of game archives compared against the last saved version
+- Setup Snapshot to fingerprint your setup and compare for later changes
 - mod compatibility and manager-output checks
 - DMM-centered setup support from visible DMM evidence
 - Archive Inspector: inspect, verify, and same-size patch deploy with mandatory backup and rollback
